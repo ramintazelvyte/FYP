@@ -49,9 +49,8 @@ public class Main {
 		}
 		
 		// initializing behaviors
-		Behavior b1 = new Gait(r.rightKnee, r.rightAnkle, r.leftKnee, r.leftAnkle);
-		Behavior b2 = new BackUp(r.rightKnee, r.rightAnkle, r.leftKnee, r.leftAnkle, 
-				r.sonicRight, r.sonicLeft);
+		Behavior b1 = new Gait(r);
+		Behavior b2 = new BackUp(r);
 		Behavior b3 = new Touch(r.touch);
 		Behavior b4 = new ButtonPress(slave);
 		

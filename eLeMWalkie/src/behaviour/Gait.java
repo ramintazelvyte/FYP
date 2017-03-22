@@ -3,6 +3,7 @@ package behaviour;
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.remote.RemoteMotor;
 import lejos.robotics.subsumption.Behavior;
+import robotConstructor.RobotConstructor;
 
 public class Gait implements Behavior{
 
@@ -15,12 +16,11 @@ public class Gait implements Behavior{
 	private RemoteMotor la;
 	
 	
-	public Gait(NXTRegulatedMotor rknee, NXTRegulatedMotor rankle,
-			RemoteMotor lknee, RemoteMotor lankle){
-		rk = rknee;
-		lk = lknee;
-		ra = rankle;
-		la = lankle;
+	public Gait(RobotConstructor r){
+		rk = r.rightKnee;
+		lk = r.leftKnee;
+		ra = r.rightAnkle;
+		la = r.leftAnkle;
 		
 		rk.setAcceleration(50);
 		lk.setAcceleration(50);

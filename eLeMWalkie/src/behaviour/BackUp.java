@@ -4,6 +4,7 @@ import lejos.nxt.Sound;
 import lejos.nxt.UltrasonicSensor;
 import lejos.nxt.remote.RemoteMotor;
 import lejos.robotics.subsumption.Behavior;
+import robotConstructor.RobotConstructor;
 
 public class BackUp implements Behavior{
 
@@ -17,15 +18,13 @@ public class BackUp implements Behavior{
 	private UltrasonicSensor usr;
 	private UltrasonicSensor usl;
 		
-	public BackUp(NXTRegulatedMotor rknee, NXTRegulatedMotor rankle,
-			RemoteMotor lknee, RemoteMotor lankle,
-			UltrasonicSensor right, UltrasonicSensor left){
-		usr = right;
-		usl = left;
-		rk = rknee;
-		lk = lknee;
-		ra = rankle;
-		la = lankle;
+	public BackUp(RobotConstructor r){
+		usr = r.sonicRight;
+		usl = r.sonicLeft;
+		rk = r.rightKnee;
+		lk = r.leftKnee;
+		ra = r.rightAnkle;
+		la = r.leftAnkle;
 		rk.setAcceleration(50);
 		lk.setAcceleration(50);
 		ra.setAcceleration(50);

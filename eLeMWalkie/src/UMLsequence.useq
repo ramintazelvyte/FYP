@@ -1,2 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<sequence-diagram version="1.1.14" icons="true"/>
+<sequence-diagram version="1.1.14" icons="true">  
+  <object id="1" language="java" name="main.Main" project="eLeMWalkie" file="/eLeMWalkie/src/main/Main.java" 
+    binary="false" label="main" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="229" y="0"/>    
+    <execution id="2">      
+      <position height="360" width="57" x="5" y="113"/>    
+    </execution>    
+    <execution id="5">      
+      <position height="72" width="57" x="5" y="516"/>    
+    </execution>  
+  </object>  
+  <object id="8" language="java" name="brickConnection.ConnectToSlave" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/brickConnection/ConnectToSlave.java" binary="false" label="connectToSlave" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="69" y="0"/>    
+    <execution id="9">      
+      <position height="24" width="141" x="66" y="281"/>    
+    </execution>    
+    <execution id="4">      
+      <position height="312" width="141" x="66" y="137"/>    
+    </execution>  
+  </object>  
+  <object id="22" language="java" name="lejos.nxt.comm.Bluetooth" project="eLeMWalkie" 
+    file="C:/Program Files (x86)/leJOS NXJ/lib/nxt/classes.jar" binary="true" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="11">      
+      <position height="24" width="0" x="0" y="161"/>    
+    </execution>  
+  </object>  
+  <object id="23" language="java" name="lejos.nxt.remote.RemoteNXT" project="eLeMWalkie" 
+    file="C:/Program Files (x86)/leJOS NXJ/lib/nxt/classes.jar" binary="true" label="slave" type="class" autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="13">      
+      <position height="24" width="0" x="0" y="209"/>    
+    </execution>  
+  </object>  
+  <object id="24" language="java" name="lejos.nxt.LCD" project="eLeMWalkie" 
+    file="C:/Program Files (x86)/leJOS NXJ/lib/nxt/classes.jar" binary="true" label="&lt;static&gt;" type="class" 
+    autoSize="true">    
+    <position height="0" width="0" x="0" y="0"/>    
+    <execution id="15">      
+      <position height="24" width="0" x="0" y="257"/>    
+    </execution>    
+    <execution id="17">      
+      <position height="24" width="0" x="0" y="305"/>    
+    </execution>    
+    <execution id="19">      
+      <position height="24" width="0" x="0" y="353"/>    
+    </execution>    
+    <execution id="21">      
+      <position height="24" width="0" x="0" y="401"/>    
+    </execution>  
+  </object>  
+  <object id="25" language="java" name="robotConstructor.RobotConstructor" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/robotConstructor/RobotConstructor.java" binary="false" label="robotConstructor" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="142" y="0"/>  
+  </object>  
+  <object id="26" language="java" name="logWriter.DataLogging" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/logWriter/DataLogging.java" binary="false" label="dataLogging" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="199" y="0"/>    
+    <execution id="7">      
+      <position height="24" width="113" x="635" y="540"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="logger.Logging" project="eLeMWalkie" file="/eLeMWalkie/src/logger/Logging.java" 
+    binary="false" label="logging" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="226" y="0"/>  
+  </object>  
+  <object id="28" language="java" name="obstacle.Obstacle" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/obstacle/Obstacle.java" binary="false" label="obstacle" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="225" y="0"/>  
+  </object>  
+  <object id="29" language="java" name="slaveShutdown.Shutdown" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/slaveShutdown/Shutdown.java" binary="false" label="shutdown" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="205" y="0"/>  
+  </object>  
+  <object id="30" language="java" name="behaviour.ButtonPress" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/ButtonPress.java" binary="false" label="buttonPress" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="333" y="0"/>  
+  </object>  
+  <object id="31" language="java" name="behaviour.Touch" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/Touch.java" binary="false" label="touch" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="206" y="0"/>  
+  </object>  
+  <object id="32" language="java" name="behaviour.BackUp" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/BackUp.java" binary="false" label="backUp" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="370" y="0"/>  
+  </object>  
+  <object id="33" language="java" name="behaviour.Gait" project="eLeMWalkie" file="/eLeMWalkie/src/behaviour/Gait.java" 
+    binary="false" label="gait" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="176" y="0"/>  
+  </object>  
+  <message id="3" operation="Connect():lejos.nxt.remote.RemoteNXT" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="6" operation="DataLogging(lejos.util.NXTDataLogger,robotConstructor.RobotConstructor)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="7"/>  
+  </message>  
+  <message id="10" operation="getConnector():lejos.nxt.comm.NXTCommConnector" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="11"/>  
+  </message>  
+  <message id="12" operation="RemoteNXT(java.lang.String,lejos.nxt.comm.NXTCommConnector)" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="13"/>  
+  </message>  
+  <message id="14" operation="clear():void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="15"/>  
+  </message>  
+  <message id="16" operation="drawString(java.lang.String,int,int):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="17"/>  
+  </message>  
+  <message id="18" operation="drawString(java.lang.String,int,int):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="19"/>  
+  </message>  
+  <message id="20" operation="drawString(java.lang.String,int,int):void" asynchronous="false">    
+    <end type="SOURCE" refId="4"/>    
+    <end type="TARGET" refId="21"/>  
+  </message>
+</sequence-diagram>
