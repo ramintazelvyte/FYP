@@ -22,6 +22,12 @@ public class Main {
 	public static Obstacle obs;
 	static Logging logger;
 	public static DataLogging test;
+	private static RobotConstructor r;
+	private static RemoteNXT slave;
+	private static Behavior b1;
+	private static Behavior b2;
+	private static Behavior b3;
+	private static Behavior b4;
 	
 	public static void main(String[] args) throws IOException{
 		
@@ -30,11 +36,11 @@ public class Main {
 
 		
 		// connect to remote NXT brick(slave)
-		RemoteNXT slave = ConnectToSlave.Connect();
+		slave = ConnectToSlave.Connect();
 		
 		// create class which initializes required motors 
 		// and sensors for this project
-		RobotConstructor r = new RobotConstructor(slave);
+		r = new RobotConstructor(slave);
 		
 		r.gyro.recalibrateOffset();
 		
@@ -49,10 +55,10 @@ public class Main {
 		}
 		
 		// initializing behaviors
-		Behavior b1 = new Gait(r);
-		Behavior b2 = new BackUp(r);
-		Behavior b3 = new Touch(r.touch);
-		Behavior b4 = new ButtonPress(slave);
+		b1 = new Gait(r);
+		b2 = new BackUp(r);
+		b3 = new Touch(r.touch);
+		b4 = new ButtonPress(slave);
 		
 		// set gait.go variable to true, so that 
 		// the robot would start walking as soon as the program is started
