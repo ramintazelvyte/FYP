@@ -50,8 +50,8 @@ public class BackUp implements Behavior{
 		// lower down, otherwise the robot will lose the 
 		// balance and fall backwards, as one of the legs 
 		// slightly extends
-		rk.rotate(-35);
-		lk.rotate(-35);
+		rk.rotate(-25);
+		lk.rotate(-25);
 		
 		la.rotate(-20);
 		ra.rotate(30);
@@ -63,12 +63,14 @@ public class BackUp implements Behavior{
 			i++;
 		}
 		
-		// get back to normal position
+		// get back to normal ankle position
 		la.rotate(20);
 		ra.rotate(-30);
 		
-//		rk.rotate(35);
-//		lk.rotate(35);
+		// lower down before standing up
+		// in the gait object
+		rk.rotate(6);
+		lk.rotate(6);
 //		
 //		try {
 //			Thread.sleep(500);

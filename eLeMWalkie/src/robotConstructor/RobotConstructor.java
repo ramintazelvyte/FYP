@@ -14,11 +14,13 @@ public class RobotConstructor {
 	public UltrasonicSensor sonicRight;
 	public UltrasonicSensor sonicLeft;
 	public TouchSensor touch;
+	public NXTRegulatedMotor rightHip;
 	public NXTRegulatedMotor rightKnee;
 	public NXTRegulatedMotor rightAnkle;
+	public RemoteMotor leftHip;
 	public RemoteMotor leftKnee;
 	public RemoteMotor leftAnkle;
-	RemoteNXT slave;
+	public RemoteNXT slave;
 	
 	public RobotConstructor(RemoteNXT s){
 		slave = s;
@@ -26,8 +28,10 @@ public class RobotConstructor {
 		sonicRight = new UltrasonicSensor(SensorPort.S1);
 		sonicLeft = new UltrasonicSensor(SensorPort.S3);
 		touch = new TouchSensor(SensorPort.S4);
+		rightHip = Motor.A;
 		rightKnee = Motor.B;
 		rightAnkle = Motor.C;
+		leftHip = slave.A;
 		leftKnee = slave.B;
 		leftAnkle = slave.C;
 	}

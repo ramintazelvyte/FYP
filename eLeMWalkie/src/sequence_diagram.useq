@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence-diagram version="1.1.14" icons="true" automaticImage="PNG">  
+  <object id="1" language="java" name="main.Main" project="eLeMWalkie" file="/eLeMWalkie/src/main/Main.java" 
+    binary="false" label="main" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="89" y="0"/>    
+    <execution id="2">      
+      <position height="504" width="57" x="5" y="113"/>    
+    </execution>  
+  </object>  
+  <object id="25" language="java" name="logger.Logging" project="eLeMWalkie" file="/eLeMWalkie/src/logger/Logging.java" 
+    binary="false" label="logging" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="68" y="0"/>    
+    <execution id="4">      
+      <position height="24" width="81" x="66" y="137"/>    
+    </execution>  
+  </object>  
+  <object id="26" language="java" name="brickConnection.ConnectToSlave" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/brickConnection/ConnectToSlave.java" binary="false" label="connectToSlave" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="243" y="0"/>    
+    <execution id="6">      
+      <position height="24" width="141" x="151" y="181"/>    
+    </execution>  
+  </object>  
+  <object id="27" language="java" name="robotConstructor.RobotConstructor" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/robotConstructor/RobotConstructor.java" binary="false" label="robotConstructor" type="class" 
+    autoSize="true">    
+    <position height="-1" width="-1" x="360" y="0"/>    
+    <execution id="8">      
+      <position height="24" width="151" x="296" y="219"/>    
+    </execution>  
+  </object>  
+  <object id="28" language="java" name="obstacle.Obstacle" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/obstacle/Obstacle.java" binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="537" y="0"/>    
+    <execution id="10">      
+      <position height="24" width="86" x="451" y="257"/>    
+    </execution>    
+    <execution id="16">      
+      <position height="24" width="86" x="451" y="374"/>    
+    </execution>    
+    <execution id="29">      
+      <position height="24" width="86" x="451" y="842"/>    
+    </execution>  
+  </object>  
+  <object id="30" language="java" name="logWriter.DataLogging" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/logWriter/DataLogging.java" binary="false" label="dataLogging" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="674" y="0"/>    
+    <execution id="12">      
+      <position height="24" width="113" x="541" y="305"/>    
+    </execution>    
+    <execution id="31">      
+      <position height="24" width="113" x="541" y="796"/>    
+    </execution>    
+    <execution id="14">      
+      <position height="24" width="7" x="594" y="326"/>    
+    </execution>  
+  </object>  
+  <object id="32" language="java" name="behaviour.Gait" project="eLeMWalkie" file="/eLeMWalkie/src/behaviour/Gait.java" 
+    binary="false" label="&lt;static&gt;" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="793" y="0"/>    
+    <execution id="18">      
+      <position height="24" width="61" x="658" y="435"/>    
+    </execution>  
+  </object>  
+  <object id="33" language="java" name="behaviour.BackUp" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/BackUp.java" binary="false" label="backUp" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="838" y="0"/>    
+    <execution id="20">      
+      <position height="24" width="78" x="723" y="480"/>    
+    </execution>  
+  </object>  
+  <object id="34" language="java" name="behaviour.Touch" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/Touch.java" binary="false" label="touch" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="886" y="0"/>    
+    <execution id="22">      
+      <position height="24" width="67" x="805" y="522"/>    
+    </execution>  
+  </object>  
+  <object id="35" language="java" name="behaviour.ButtonPress" project="eLeMWalkie" 
+    file="/eLeMWalkie/src/behaviour/ButtonPress.java" binary="false" label="buttonPress" type="class" autoSize="true">    
+    <position height="-1" width="-1" x="943" y="0"/>    
+    <execution id="24">      
+      <position height="24" width="112" x="876" y="569"/>    
+    </execution>    
+    <execution id="36">      
+      <position height="118" width="112" x="876" y="772"/>    
+    </execution>  
+  </object>  
+  <note id="39">    
+    <position height="84" width="294" x="49" y="599"/>    
+    <background red="202" green="255" blue="202"/>    
+    <text><![CDATA[All 4 behaviours are added to a byte array, which is passed to an 'Arbitrator' thread. 
+Then the 'Arbitrator' thread will be started in main().
+]]>
+    </text>  
+  </note>  
+  <note id="40">    
+    <position height="180" width="509" x="404" y="587"/>    
+    <background red="202" green="255" blue="202"/>    
+    <text><![CDATA[After the 'Arbitrator' thread is started, the behaviour classes will be executed in the order of the highest to lowest priority. (ButtonPress being the highest, Gait - the lowest, in an order they were created in main.
+
+When a higher priority behaviour meets a specific condition, it will take over, causing the currently running behaviour to be suppressed.
+
+This will be running until the 'ENTER' button is pressed, stopping logging, and  interrupting logWriter and obstacle threads. Then shutting down the slave brick, and itself. ]]>
+    </text>  
+  </note>  
+  <message id="3" operation="logging():lejos.util.NXTDataLogger" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </message>  
+  <message id="5" operation="Connect():lejos.nxt.remote.RemoteNXT" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="6"/>  
+  </message>  
+  <message id="7" operation="RobotConstructor(lejos.nxt.remote.RemoteNXT)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="8"/>  
+  </message>  
+  <message id="9" operation="Obstacle(lejos.nxt.UltrasonicSensor,lejos.nxt.UltrasonicSensor)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="10"/>  
+  </message>  
+  <message id="11" operation="DataLogging(lejos.util.NXTDataLogger,robotConstructor.RobotConstructor)" 
+    asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="12"/>  
+  </message>  
+  <message id="13" operation="start():void" asynchronous="false" x="39" y="308">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="14"/>  
+  </message>  
+  <message id="15" operation="start():void" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="16"/>  
+  </message>  
+  <message id="17" operation="Gait(robotConstructor.RobotConstructor)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="18"/>  
+  </message>  
+  <message id="19" operation="BackUp(robotConstructor.RobotConstructor)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="20"/>  
+  </message>  
+  <message id="21" operation="Touch(lejos.nxt.TouchSensor)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="22"/>  
+  </message>  
+  <message id="23" operation="ButtonPress(lejos.nxt.remote.RemoteNXT)" asynchronous="false">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="24"/>  
+  </message>  
+  <message id="37" operation="interrupt():void" asynchronous="false">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="31"/>  
+  </message>  
+  <message id="38" operation="isInterrupted():boolean" asynchronous="false">    
+    <end type="SOURCE" refId="36"/>    
+    <end type="TARGET" refId="29"/>  
+  </message>  
+  <text-link id="41">    
+    <link-end type="SOURCE" refId="39"/>    
+    <link-end type="TARGET" refId="39"/>  
+  </text-link>
+</sequence-diagram>

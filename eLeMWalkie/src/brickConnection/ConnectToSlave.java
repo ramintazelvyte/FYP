@@ -14,11 +14,10 @@ public class ConnectToSlave extends NXTCommDevice {
 	static RemoteNXT slave;
 	
 	public static RemoteNXT Connect(){
-
-		String fname = "Slave";
-
+		
 		NXTCommConnector c = Bluetooth.getConnector();
 		
+		String fname = "Slave";
 		try {
 			slave = new RemoteNXT(fname, c);
 		} catch (IOException e) {
@@ -27,6 +26,10 @@ public class ConnectToSlave extends NXTCommDevice {
 
 		String con = "Connected to ";
 
+		// TODO
+		// this should be moved up, before 
+		// RemoteNXT constructor is instantiated
+		// if no devices, throw an error
 		if (c != null) {
 			LCD.clear();
 			LCD.drawString(con, 2, 3);

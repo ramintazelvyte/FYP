@@ -21,6 +21,7 @@ public class Main {
 
 	public static Obstacle obs;
 	static Logging logger;
+	public static NXTDataLogger log;
 	public static DataLogging test;
 	private static RobotConstructor r;
 	private static RemoteNXT slave;
@@ -32,7 +33,7 @@ public class Main {
 	public static void main(String[] args) throws IOException{
 		
 		logger = new Logging();
-		NXTDataLogger log = logger.logging();
+		log = logger.logging();
 
 		
 		// connect to remote NXT brick(slave)
@@ -44,12 +45,14 @@ public class Main {
 		
 		r.gyro.recalibrateOffset();
 		
+		// Create threads for obstacle detection and data logging
 		obs = new Obstacle(r.sonicRight,r.sonicLeft);
 		test = new DataLogging(log,r);
 		
 		test.start();
 		obs.start();
 		
+		// Wait 200 miliseconds for the PC tool to start logging
 		long startTime = System.currentTimeMillis();
 		while((System.currentTimeMillis()-startTime)<200){
 		}
@@ -58,12 +61,11 @@ public class Main {
 		b1 = new Gait(r);
 		b2 = new BackUp(r);
 		b3 = new Touch(r.touch);
-		b4 = new ButtonPress(slave);
+		b4 = new ButtonPress(r);
 		
 		// set gait.go variable to true, so that 
 		// the robot would start walking as soon as the program is started
 		Gait.go = true;
-		DataLogging.flag = true;
 		Sound.twoBeeps();
 		Behavior [] bArray = {b1, b2, b3, b4};
 		

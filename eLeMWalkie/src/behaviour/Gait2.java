@@ -5,7 +5,7 @@ import lejos.nxt.remote.RemoteMotor;
 import lejos.robotics.subsumption.Behavior;
 import robotConstructor.RobotConstructor;
 
-public class Gait implements Behavior{
+public class Gait2 implements Behavior{
 
 	public static boolean go;
 	public static boolean suppressed;
@@ -19,7 +19,7 @@ public class Gait implements Behavior{
 	private int threshold = 55;
 	public static int count = 0;
 	
-	public Gait(RobotConstructor r){
+	public Gait2(RobotConstructor r){
 		rh = r.rightHip;
 		lh = r.leftHip;
 		rk = r.rightKnee;
@@ -29,16 +29,16 @@ public class Gait implements Behavior{
 		
 		rh.setAcceleration(50);
 		lh.setAcceleration(50);
-		rk.setAcceleration(30);
-		lk.setAcceleration(30);
-		ra.setAcceleration(30);
-		la.setAcceleration(30);
+		rk.setAcceleration(40);
+		lk.setAcceleration(40);
+		ra.setAcceleration(40);
+		la.setAcceleration(40);
 		rh.setSpeed(1500);
 		lh.setSpeed(1500);
-		rk.setSpeed(30);
-		lk.setSpeed(30);
-		ra.setSpeed(30);
-		la.setSpeed(30);
+		rk.setSpeed(40);
+		lk.setSpeed(40);
+		ra.setSpeed(40);
+		la.setSpeed(40);
 		setGoToFalse();
 	}
 	
@@ -51,46 +51,36 @@ public class Gait implements Behavior{
 	@Override
 	public void action() {
 		setSuppressedToFalse();
-
-		rk.rotate(30);
-		lk.rotate(30);
-		rk.lock(100);
-//		lk.regulateSpeed(true);
-		rk.rotate(10);
-		lk.rotate(10);
-		la.rotate(-27);
-		ra.rotate(30);
-//		rk.lock(100);
-//		lk.stop(true);
+		
+		standUp();
+		ankleTilt();
  
-		while(!suppressed){
-			lk.rotate(4);
-
-			ra.rotate(-27);
-			la.rotate(27);
-				
-			ra.rotate(-27);
-			la.rotate(27);
-				
-			rk.rotate(-5);
-			lk.rotate(-3);
-				
-			rk.rotate(10);
-
-			la.rotate(-27);
-			ra.rotate(27);
-				
-			la.rotate(-27);
-			ra.rotate(27);
-			
-			rk.rotate(-5);
-			lk.rotate(-3);
-		}
+//		while(!suppressed){
+////			if (rk.getTachoCount()>threshold || lk.getTachoCount()>threshold){
+////				rh.rotate(1500);
+////				lh.rotate(1500);
+////				threshold = 90;
+////				count += 1;
+////			}
+//			extendLeftKnee();
+//
+//			// slowly shift to the left
+//			ankleShiftLeft();
+//			ankleShiftLeft();
+//				
+//			lower();
+//				
+//			extendRightKnee();
+//
+//			// slowly shift to the right
+//			ankleShiftRight();
+//			ankleShiftRight();
+//			
+////			lower();
+//		}
 		
-		la.rotate(27);
-		ra.rotate(-30);
-		
-		
+		// get back to neutral ankle position
+		ankleNeutral();
 		
 		setGoToFalse();
 	}
