@@ -1,4 +1,5 @@
 package behaviour;
+
 import lejos.nxt.NXTRegulatedMotor;
 import lejos.nxt.Sound;
 import lejos.nxt.UltrasonicSensor;
@@ -7,7 +8,12 @@ import lejos.robotics.subsumption.Behavior;
 import robotConstructor.RobotConstructor;
 
 public class BackUp implements Behavior{
-
+	/* this is a behaviour object that 
+	 * executes a backwards gait
+	 * and it is of the second lowest priority
+	 * out of all the behaviours 
+	 * */
+	
 	public static boolean suppressed;
 	
 	private NXTRegulatedMotor rk;
@@ -21,10 +27,14 @@ public class BackUp implements Behavior{
 	public BackUp(RobotConstructor r){
 		usr = r.sonicRight;
 		usl = r.sonicLeft;
+		
 		rk = r.rightKnee;
 		lk = r.leftKnee;
 		ra = r.rightAnkle;
 		la = r.leftAnkle;
+		
+		// setting the acceleration 
+		// rate and speed of the motors
 		rk.setAcceleration(50);
 		lk.setAcceleration(50);
 		ra.setAcceleration(50);
@@ -42,6 +52,9 @@ public class BackUp implements Behavior{
 		return false;
 	}
 
+	// this it the method that executes
+	// when the behaviour has control over
+	// the robot
 	@Override
 	public void action() {
 		setSuppressedToFalse();
@@ -53,11 +66,14 @@ public class BackUp implements Behavior{
 		rk.rotate(-25);
 		lk.rotate(-25);
 		
+		// tilt the right, shifting the weight
 		la.rotate(-20);
 		ra.rotate(30);
 		
 		int i = 0;
-		// while it is not suppressed, back up for 15 secs
+		
+		// while it is not suppressed, back up 
+		// for 2 backwards gait cycles
 		while(i < 2 && !suppressed){
 			BackingUp();
 			i++;
@@ -67,174 +83,20 @@ public class BackUp implements Behavior{
 		la.rotate(20);
 		ra.rotate(-30);
 		
-		// lower down before standing up
-		// in the gait object
+		// stand up slightly before the robot
+		// stands up fully in the gait behaviour object
 		rk.rotate(6);
 		lk.rotate(6);
-//		
-//		try {
-//			Thread.sleep(500);
-//		} catch (InterruptedException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-//		
-//		// generate random number(1/0)
-//		// to determine which way to turn
-//		int val = (int) Math.round(Math.random());
-//		
-//		if(val == 1){
-//			TurnRight();
-//		}else{
-//			TurnLeft();
-//		}
-//		
-//		rk.rotate(-35);
-//		lk.rotate(-35);
+
 		setGoToTrue();
 	}
 
+	// this method is executed when a behaviour
+	// of higher priority takes over, therefore,
+	// this behaviour will suppress immediately
 	@Override
 	public void suppress() {
 		setSuppressedToTrue();
-	}
-	
-	private void BackingUp(){
-			lk.rotate(-7);
-
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			ra.rotate(-25);
-			la.rotate(25);
-			
-			ra.rotate(-25);
-			la.rotate(25);
-			
-			rk.rotate(-7);
-			
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			la.rotate(-25);
-			ra.rotate(25);
-			
-			la.rotate(-25);
-			ra.rotate(25);
-	}
-	
-	@SuppressWarnings("unused")
-	private void TurnRight(){
-		
-		ra.rotate(-30);
-		la.rotate(20);
-		
-		int i = 0;
-		// turn for 10 secs
-		while(i<3){
-			// extend left knee
-			rk.rotate(7);
-				
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			la.rotate(-25);
-			ra.rotate(25);
-			
-			la.rotate(-25);
-			ra.rotate(25);
-				
-			// lower
-			rk.rotate(-4);
-			lk.rotate(4);
-				
-			// reverse right knee
-			lk.rotate(-7);
-				
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			ra.rotate(-25);
-			la.rotate(25);
-				
-			ra.rotate(-25);
-			la.rotate(25);
-				
-			i++;
-		}
-		
-		// get back to normal position
-		ra.rotate(30);
-		la.rotate(-20);
-	}
-	
-	@SuppressWarnings("unused")
-	private void TurnLeft(){
-
-		la.rotate(20);
-		ra.rotate(-30);
-		
-		int i = 0;
-		// turn for 10 secs
-		while(i<3){
-			// extend left knee
-			lk.rotate(7);
-				
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			ra.rotate(-25);
-			la.rotate(25);
-				
-			ra.rotate(-25);
-			la.rotate(25);
-				
-			// lower
-			lk.rotate(-5);
-			rk.rotate(5);
-				
-			// reverse right knee
-			rk.rotate(-7);
-				
-			try {
-				Thread.sleep(100);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			la.rotate(-25);
-			ra.rotate(25);
-				
-			la.rotate(-25);
-			ra.rotate(25);
-				
-			i++;
-		}
-		
-		// get back to normal position
-		la.rotate(20);
-		ra.rotate(-30);
 	}
 	
 	private static void setGoToTrue(){
@@ -247,5 +109,35 @@ public class BackUp implements Behavior{
 	
 	private static void setSuppressedToFalse(){
 		suppressed = false;
+	}
+	
+	private void BackingUp(){
+			lk.rotate(-7);
+
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			ra.rotate(-25);
+			la.rotate(25);
+			
+			ra.rotate(-25);
+			la.rotate(25);
+			
+			rk.rotate(-7);
+			
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			la.rotate(-25);
+			ra.rotate(25);
+			
+			la.rotate(-25);
+			ra.rotate(25);
 	}
 }

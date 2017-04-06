@@ -7,34 +7,44 @@ import main.Main;
 import robotConstructor.RobotConstructor;
 
 public class ButtonPress implements Behavior {
-
+	/* this behaviour terminates the program
+	 * before it shuts down the bricks,
+	 * it will interrup the obstacle and 
+	 * data logging threads
+	 * */
+	
 	public static boolean suppressed;
+	
 	private RemoteNXT s;
 	RobotConstructor r;
+	
 	public ButtonPress(RobotConstructor robot){
 		s = robot.slave;
 		r = robot;
 	}
 	
+	// takes control when the ENTER button 
+	// on the Master NXT brick is pressed down
 	public boolean takeControl(){
 		if(Button.ENTER.isDown()) return true;
 		return false;
 	}
 
+	
 	public void action() {
 		setSuppressedToFalse();
+		
 		Sound.beepSequence();
-//		if(Gait.count == 1){
-//			r.rightHip.rotate(-1500);
-//			r.leftHip.rotate(-1500);
-//		}else{
-//			r.rightHip.rotate(-1500*Gait.count);
-//			r.leftHip.rotate(-1500*Gait.count);
-//		}
+		
+		// interrupt alive threads
 		Main.test.interrupt();
 		Main.obs.interrupt();
+		
+		// shut down the bricks
 		s.startProgram("Shutdown.nxj");
 		System.exit(0);
+		
+		// the program is terminated 
 	}
 
 	public void suppress() {

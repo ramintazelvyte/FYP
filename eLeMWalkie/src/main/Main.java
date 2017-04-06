@@ -18,13 +18,32 @@ import obstacle.Obstacle;
 import robotConstructor.RobotConstructor;
 
 public class Main {
-
-	public static Obstacle obs;
+	/* This is the main class of the source code
+	 * In order to begin the program, this program 
+	 * has to be run as a Lejos NXJ application
+	 * 
+	 * the NXT Charting Logger tool must be launched 
+	 * before hand, this can be done by running the 
+	 * 'nxjchartinglogger.bat' file. 
+	 * This file can be found in the directory
+	 * where leJOS NXJ is installed 
+	 * e.g 'C:\Program Files (x86)\LeJOS NXJ\bin'
+	 * 
+	 * Enter the nameof the NXT brick: Master,
+	 * and set the location where data logs should 
+	 * be stored
+	 * 
+	 * */
+	
+	
+	// instantiate the required 
+	// variables for this class 
 	static Logging logger;
 	public static NXTDataLogger log;
-	public static DataLogging test;
-	private static RobotConstructor r;
 	private static RemoteNXT slave;
+	private static RobotConstructor r;
+	public static Obstacle obs;
+	public static DataLogging test;
 	private static Behavior b1;
 	private static Behavior b2;
 	private static Behavior b3;
@@ -32,6 +51,9 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException{
 		
+		// instantiate the Logging object
+		// and call the logging() to configure
+		// the structure of the real-time log
 		logger = new Logging();
 		log = logger.logging();
 
@@ -43,9 +65,11 @@ public class Main {
 		// and sensors for this project
 		r = new RobotConstructor(slave);
 		
+		// calibrate the gyroscope value to 0, 
+		// for more accurate and readable result
 		r.gyro.recalibrateOffset();
 		
-		// Create threads for obstacle detection and data logging
+		// Create and start threads for obstacle detection and data logging
 		obs = new Obstacle(r.sonicRight,r.sonicLeft);
 		test = new DataLogging(log,r);
 		
@@ -72,5 +96,8 @@ public class Main {
 		// initialize Arbitrator class and start the thread
 		Arbitrator a = new Arbitrator(bArray);
 		a.start();
+		
+		// there is no way to interrupt the Arbitrator thread
+		// therefore the program has to be shut down in one of the behaviours
 	}
 }

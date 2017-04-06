@@ -1,10 +1,10 @@
-package logWriter;
+package testing;
 
+import lejos.nxt.Button;
 import lejos.nxt.Sound;
 import lejos.util.NXTDataLogger;
-import robotConstructor.RobotConstructor;
 
-public class DataLogging extends Thread{
+public class TestDataLogger extends Thread{
 	/* This is a thread class which runs the 
 	 * runnable method.
 	 * The runnable logs motor and sensor data 
@@ -13,9 +13,9 @@ public class DataLogging extends Thread{
 	 * */
 	
 	NXTDataLogger log;
-	RobotConstructor robot;
+	robotConstructor.RobotConstructor robot;
 	
-	public DataLogging(NXTDataLogger l, RobotConstructor r){
+	public TestDataLogger(NXTDataLogger l, robotConstructor.RobotConstructor r){
 		this.log = l;
 		robot = r;
 	}
@@ -25,10 +25,11 @@ public class DataLogging extends Thread{
 		int counter = 1000; // milliseconds
 		
 		try{
-
-			// while the thread is not interrupting 
+			
+			// while the ENTER button is not pressed
+			// on the Master NXT brick
 			// keep logging data
-			while(true){
+			while(!Button.ENTER.isDown()){
 				// get the start time of the loop iteration
 				startTime = System.currentTimeMillis();
 				log.writeLog((int)robot.gyro.getAngularVelocity());
